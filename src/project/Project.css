@@ -1,0 +1,110 @@
+#project-sec1 {
+    height: 100%;
+    padding: 20px 0px;
+    margin: 50px auto 70px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 10px;
+    /* border: 1px solid rgb(100, 130, 173); */
+}
+
+#project-inner_sec1 {
+    width: 400px;
+    /* width: 40%; */
+}
+
+#project-inner_sec1>img {
+    height: 100%;
+}
+
+#project-inner_sec2 {
+    width: 600px;
+    /* width: 100%; */
+}
+
+#project-sec2 {
+    padding: 30px 0px;
+    /* border: 1px solid rgb(100, 130, 173); */
+}
+
+#project2-inner_sec1 {
+    padding: 20px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* gap: 10px; */
+}
+
+.project2-inner_sec1_card {
+    cursor: default;
+    width: 350px;
+    padding: 0px 10px;
+    /* margin: 0px auto; */
+}
+
+.project2-inner_sec1_card:nth-child(1) {
+    border-right: 1px solid rgb(100, 130, 173);
+    border-bottom: 1px solid rgb(100, 130, 173);
+}
+
+.project2-inner_sec1_card:nth-child(2) {
+    border-right: 1px solid rgb(100, 130, 173);
+    border-bottom: 1px solid rgb(100, 130, 173);
+}
+
+.project2-inner_sec1_card:nth-child(3) {
+    border-bottom: 1px solid rgb(100, 130, 173);
+}
+
+.project2-inner_sec1_card:nth-child(4) {
+    border-right: 1px solid rgb(100, 130, 173);
+    border-bottom: 1px solid rgb(100, 130, 173);
+}
+
+.project2-inner_sec1_card:nth-child(5) {
+    border-bottom: 1px solid rgb(100, 130, 173);
+}
+
+@media (max-width: 1201px) {
+    .project2-inner_sec1_card:nth-child(2) {
+        border-right: none;
+        border-bottom: 1px solid rgb(100, 130, 173);
+    }
+
+    .project2-inner_sec1_card:nth-child(3) {
+        border-right: 1px solid rgb(100, 130, 173);
+        border-bottom: 1px solid rgb(100, 130, 173);
+    }
+
+    .project2-inner_sec1_card:nth-child(4) {
+        border-right: none;
+        border-bottom: 1px solid rgb(100, 130, 173);
+    }
+}
+
+
+@media (max-width: 993px) {
+    #project2-inner_sec1 {
+        gap: 20px;
+    }
+    .project2-inner_sec1_card:nth-child(1) {
+        border-right: none;
+        border-bottom: 1px solid rgb(100, 130, 173);
+    }
+    .project2-inner_sec1_card:nth-child(2) {
+        border-right: none;
+        border-bottom: 1px solid rgb(100, 130, 173);
+    }
+
+    .project2-inner_sec1_card:nth-child(3) {
+        border-right: none  ;
+        border-bottom: 1px solid rgb(100, 130, 173);
+    }
+
+    .project2-inner_sec1_card:nth-child(4) {
+        border-right: none;
+        border-bottom: 1px solid rgb(100, 130, 173);
+    }
+}
+

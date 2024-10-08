@@ -1,0 +1,83 @@
+#residential-plot_sec {
+  margin-top: 50px;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.residential-plot-card_content {
+  width: 600px;
+  height: 100%;
+}
+
+.residential-plot-card_content>li {
+  border: 1px solid black;
+  border-radius: 23px;
+  width: 250px !important;
+  text-align: center;
+}
+
+.residential-plot-card_content>h2 {
+  color: var(--primary-color);
+}
+
+.residential-plot-card_content>p {
+  text-align: justify;
+}
+
+.residential-plot-card_img {
+  width: 400px;
+  height: 100%;
+}
+
+.residential-plot-card_img>img {
+  width: 100%;
+}
+
+#residential-plot-sec_accordion {
+  margin-top: 100px;
+}
+
+#residential-plot-sec_accordion>div>li {
+  border: 1px solid black;
+  border-radius: 23px;
+  width: 250px !important;
+  margin: 0px auto;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 1200px) {
+  .residential-plot-card_img {
+    width: 350px;
+    height: 100%;
+  }
+
+  .residential-plot-card_content {
+    width: 550px;
+    height: 100%;
+  }
+}
+
+@media (max-width: 928px) {
+  .residential-plot-card_img {
+    width: 80%;
+    height: 100%;
+  }
+
+  .residential-plot-card_img>img {
+    height: 600px;
+  }
+
+  .residential-plot-card_content {
+    width: 80%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 504px) {
+  .residential-plot-card_img>img {
+    height: 400px;
+  }
+}

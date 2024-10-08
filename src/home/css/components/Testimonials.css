@@ -1,0 +1,159 @@
+#testimonials {
+    margin: 10px 0px 70px 0px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+#testimonials > h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#testimonial_item {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+    gap: 10px;
+    align-items: center;
+}
+
+#testimonial_hr {
+    border: 1px solid rgb(100, 130, 173);
+    margin: 2px auto;
+    width: 15%;
+}
+
+.testimonial_item {
+    background-color: white;
+    color: black;
+    margin: 10px auto;
+    height: 310px; /* Increased height */
+    width: 280px; /* Increased width */
+    /* border-radius: 15px; */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.testimonial_item:hover {
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.testimonial_image-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+}
+
+.testimonial_image-card img {
+    object-fit: cover;
+    /* border-radius: 50%; */
+    width: 100%;
+    height: 100%;
+    transition: filter 0.5s ease; /* Added for blur effect */
+}
+
+.testimonial_item:hover .testimonial_image-card img {
+    filter: blur(3px); /* Blur effect only on image */
+}
+
+.testimonial_card-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    padding: 16px;
+    height: 120px; /* Increased height */
+    transform: translateY(100%);
+    transition: transform 0.5s ease, background-color 0.3s ease;
+}
+
+.testimonial_item:hover .testimonial_card-content {
+    transform: translateY(0); /* Content slides up on hover */
+}
+
+.testimonial_card-content h3 {
+    margin: 5px 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.testimonial_card-content p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.social-media {
+    position: absolute;
+    top: 50%;
+    left: -50px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: left 0.5s ease;
+}
+
+.social-media a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #7FA1C3;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.social-media a:hover {
+    background-color: white;
+    color: rgb(100, 130, 173);
+    transform: scale(1.2);
+}
+
+.testimonial_item:hover .social-media {
+    left: 30px; /* Slide in social icons on hover */
+    top: 120px;
+}
+
+.wishlist-button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background-color: #7FA1C3;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.wishlist-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.wishlist-button:hover {
+    transform: translateY(-2px);
+    background-color: white;
+    color: rgb(100, 130, 173);
+    border: 1px solid rgb(100, 130, 173);
+}
+
+.wishlist-button:hover a {
+    color: rgb(100, 130, 173);
+}

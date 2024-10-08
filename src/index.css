@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+  /* background-color: #ffffff; */
+}
+
+:root {
+  --primary-color: rgb(100, 130, 173);
+  --bg-color: rgb(127, 161, 195);
+}
+
+body {
+  background: linear-gradient(89.9deg, rgb(208, 246, 255) 0.1%, rgb(255, 237, 237) 47.9%, rgb(255, 255, 231) 100.2%);
+  /* background: linear-gradient(109.6deg, rgb(245, 239, 249) 30.1%, rgb(207, 211, 236) 100.2%); */
+}
+
+/* button */
+
+.home-hero1_btn {
+  transition: .3s ease-in;
+  font-weight: bold;
+  margin: 2px 2px;
+  background-color: rgb(127, 161, 195);
+  color: white;
+  border: 1px solid rgb(100, 130, 173);
+  padding: 8px 0px;
+  width: 150px;
+}
+
+.home-hero1_btn>a {
+  color: white;
+  text-decoration: none;
+}
+
+.home-hero1_btn:hover {
+  background-color: #fff;
+  border: 1px solid rgb(100, 130, 173);
+  color: rgb(100, 130, 173);
+}
+
+.home-hero1_btn:hover a {
+  color: rgb(100, 130, 173);
+}

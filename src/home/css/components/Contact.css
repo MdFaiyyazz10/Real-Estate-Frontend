@@ -1,0 +1,209 @@
+#upper-footer {
+    color: white;
+    position: relative;
+    bottom: -105px;
+    padding: 35px 20px;
+    width: 80%;
+    margin: 40px auto 0px auto;
+    background-color: rgb(127, 161, 195);
+}
+
+#upper-footer_btn {
+    background: #fff;
+    border: none;
+    padding: 10px 0px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    width: 180px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transform: skew(0deg);
+}
+
+/* From Uiverse.io by mrhyddenn */
+
+#upper-footer_btn>span {
+    display: inline-block;
+}
+
+#upper-footer_btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    left: 0;
+    background: rgb(20, 20, 20);
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.5s;
+}
+
+#upper-footer_btn:hover {
+    color: #fff;
+}
+
+#upper-footer_btn:hover::before {
+    left: 0;
+    right: 0;
+    opacity: 1;
+}
+
+#home_footer {
+    padding-top: 100px;
+    background-color: rgb(23, 27, 42);
+}
+
+.footer-pad {
+    color: white;
+    cursor: default;
+}
+
+.footer-pad>h4 {
+    color: white;
+}
+
+.footer-pad>h4>span {
+    color: purple;
+    font-family: Broadway;
+    font-weight: bolder;
+}
+
+.footer-middle {
+    padding-top: 2em;
+    color: black;
+}
+
+.list-unstyled>li>a {
+    color: white;
+    text-decoration: none;
+}
+
+.list-unstyled>li>a:hover {
+    color: rgb(127, 161, 195);
+}
+
+
+/*SOCİAL İCONS*/
+
+/* footer social icons */
+
+ul.social-network {
+    list-style: none;
+    display: inline;
+    margin-left: 0 !important;
+    padding: 0;
+}
+
+ul.social-network li {
+    display: inline;
+    margin: 0 5px;
+}
+
+
+/* footer social icons */
+
+.social-network a.icoFacebook:hover {
+    background-color: #3B5998;
+}
+
+.social-network a.icoLinkedin:hover {
+    background-color: #007bb7;
+}
+
+.social-network a.icoInstagram:hover {
+    background-color: red;
+}
+
+.social-network a.icoFacebook:hover i,
+.social-network a.icoLinkedin:hover i,
+.social-network a.icoInstagram:hover i {
+    color: #fff;
+}
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+    color: #44BCDD;
+}
+
+.social-circle li a {
+    display: inline-block;
+    position: relative;
+    margin: 0 auto 0 auto;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.social-circle li i {
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -ms--transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.social-circle i {
+    color: gray;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+}
+
+.social-network a {
+    background-color: #F9F9F9;
+}
+
+#contact_copyright>p {
+    text-align: center;
+    color: white;
+}
+
+/* Media Query */
+@media (max-width: 991px) {
+    #searchBar {
+        margin: 5px 0px;
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 580px) {
+    #youGotPlans {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    #browsLocation {
+        /* width: 100%; */
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    #cards {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+#footer_hr {
+    border: 1.5px solid white;
+}

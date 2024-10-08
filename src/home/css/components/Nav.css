@@ -1,0 +1,133 @@
+#home_navbar {
+  border-bottom: 1px solid black;
+  padding: 15px 10px;
+  /* box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px; */
+}
+
+#nav-logo {
+  height: 100%;
+  padding: 0px;
+}
+
+#nav-logo>img {
+  height: 40px;
+}
+
+.nav_main {
+  font-size: 17px;
+  /* border: 1px solid red; */
+  margin: 0px 10px;
+  padding: 7px 0px !important;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.nav_main.active {
+  border-bottom: 1.5px solid var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  font-weight: bold;
+}
+
+.nav_main:after {
+  bottom: -1px;
+  content: "";
+  display: block;
+  height: 1.5px;
+  left: 0;
+  position: absolute;
+  background: var(--primary-color);
+  opacity: 0.6;
+  transition: width 0.3s ease 0s, opacity 0.3s ease 0s;
+  width: 0;
+}
+
+.nav_main:hover:after {
+  width: 100%;
+  opacity: 0.9;
+}
+
+/* Customer Login Button CSS */
+.customerlogin-btn {
+  background-color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 1.5px solid var(--primary-color);
+  border-radius: 2px;
+  position: relative;
+  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+.customerlogin-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: var(--bg-color);
+  z-index: -1;
+}
+
+.customerlogin-btn:hover,
+.customerlogin-btn:focus {
+  color: white;
+}
+
+.customerlogin-btn:hover:before,
+.customerlogin-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.customerlogin-btn:active {
+  transform: scale(0.9);
+}
+
+.dropdown-menu {
+  width: 180px;
+  margin: 0px auto;
+  border: none;
+  padding: 3px 0px !important;
+  border-radius: 0px;
+  color: black !important;
+}
+
+/* .nav-dropdown>button:focus .dropdown-menu{
+  border: 1px solid var(--primary-color) !important;
+} */
+
+.nav-dropdown>button {
+  padding-top: 8px;
+  color: rgb(99, 93, 93) !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.nav-dropdown>button:focus {
+  border: none !important;
+  outline: none !important;
+  color: var(--primary-color);
+}
+
+
+.dropdown-menu>li>.dropdown-item {
+  background-color: #fff !important;
+  color: rgb(99, 93, 93) !important;
+}
+
+.dropdown-menu>li>.dropdown-item:hover {
+  color: var(--primary-color) !important;
+}

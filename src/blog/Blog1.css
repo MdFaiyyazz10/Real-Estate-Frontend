@@ -1,0 +1,34 @@
+.blog-details {
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    position: relative;
+    top: 60px;
+}
+
+.blog-details-second {
+    color: white;
+    position: relative;
+    top: 70px;
+}
+
+.img-section {
+    background: url("https://highlandbnd.com/img/banimg23.png");
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    margin-bottom: 50px;
+}
+
+#about-blog_content {
+    margin-top: 100px;
+    text-align: justify;
+}
+
+#about-blog_content_img>img {
+    width: 100%;
+}
+
+#about-blog_content>h1 {
+   color: var(--primary-color);
+}

@@ -1,0 +1,92 @@
+/* Farmhouse Section 1 */
+#farmhouse-sec1 {
+    margin-top: 50px;
+}
+
+#farmhouse-sec1>li {
+    border: 1px solid black;
+    border-radius: 23px;
+    width: 250px !important;
+    margin: 0px auto;
+    text-align: center;
+}
+
+#farmhouse-sec1>h2 {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+#farmhouse-sec1>div {
+    width: 65%;
+    margin: 0px auto;
+    /* color: var(--primary-color); */
+    text-align: justify;
+}
+
+#farmhouse-sec1>div>video {
+    border-radius: 8px;
+    width: 100% !important;
+}
+
+/* Farmhouse Section 2 */
+#farmhouse-sec2 {
+    margin-top: 100px;
+}
+
+#farmhouse-sec2>li {
+    border: 1px solid black;
+    border-radius: 23px;
+    width: 250px !important;
+    margin: 0px auto;
+    text-align: center;
+}
+
+#farmhouse-sec2>h2 {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.farmhouse-sec2_card {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.farmhouse-sec2_cards {
+    cursor: default;
+    padding: 30px 30px;
+    text-align: justify;
+    height: 380px;
+    width: 320px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    color: black;
+}
+
+.farmhouse-sec2_cards>div {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    background-color: white;
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+}
+
+.farmhouse-sec2_cards>p {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+@media (max-width: 662px) {
+.farmhouse-sec2_cards {
+    width: 70%;
+    height: 100%;
+    padding: 15px;
+}
+}

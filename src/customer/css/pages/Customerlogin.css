@@ -1,0 +1,122 @@
+#customer-login {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 100px auto 0px auto;
+    background-color: #fff;
+    padding: 20px 0px;
+    /* border-right: 2px solid var(--primary-color); */
+}
+
+.customer-login_img {
+    /* border: 1px solid red; */
+    width: 350px;
+    height: 550px;
+}
+
+.customer-login_img>img {
+    height: 100%;
+    width: 100%;
+}
+
+.customer-login_content {
+    padding: 10px;
+    border-right: 2px solid var(--primary-color);
+    /* border: 1px solid red; */
+    width: 600px;
+    height: 550px;
+}
+
+.customer-login_content>div:nth-child(1) {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--primary-color);
+    gap: 5px;
+}
+
+.customer-login_content>div>.login-switch_btn {
+    outline: none;
+    border: none;
+    color: var(--primary-color);
+    width: 180px;
+    padding: 10px 0px;
+}
+
+
+/* customer-rejister_login_forgotpass_btn css start from here */
+.customer-rejister_login_forgotpass_btn {
+    height: 100%;
+}
+
+.customer-rejister_login_forgotpass_btn>h5 {
+    margin: 10px 0px 15px 0px;
+}
+
+.customer-rejister_login_forgotpass_btn>form>label {
+    color: var(--primary-color);
+}
+
+.customer-rejister_login_forgotpass_btn>form>input {
+    padding: 4px 0px 4px 15px;
+    outline: 1px solid var(--primary-color);
+    border: none;
+    width: 100%;
+}
+
+.customer-rejister_login_forgotpass_btn>form>div {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+.customer-rejister_login_forgotpass_btn>form>div>div {
+    width: 100%;
+}
+
+.customer-rejister_login_forgotpass_btn>form>div>div>label {
+    color: var(--primary-color);
+}
+
+.customer-rejister_login_forgotpass_btn>form>div>div>input {
+    padding: 4px 0px 4px 15px;
+    outline: none;
+    border: none;
+    width: 100%;
+    outline: 1px solid var(--primary-color);
+}
+
+
+@media (max-width: 1050px) {
+    #customer-login {
+        gap: 20px;
+    }
+
+    .customer-login_img {
+        height: 500px;
+        width: 60%;
+    }
+
+    .customer-login_img>img {
+        width: 100%;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+}
+
+@media (max-width: 745px) {
+    .customer-login_img {
+        height: 400px;
+    }
+}
+
+@media (max-width: 662px) {
+    .customer-login_img {
+        display: none;
+    }
+}
+
+
+/* customer-login_btn-sec css start from here */
