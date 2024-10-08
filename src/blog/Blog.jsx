@@ -1,5 +1,5 @@
 import React from 'react';
-import './Blog.css';
+import './css/Blog.css';
 import Nav from '../home/components/Nav';
 import Contact from '../home/components/Contact';
 import { Link } from 'react-router-dom';
