@@ -14,20 +14,22 @@ const CountdownTimer = ({ expiryTime, onExpire }) => {
     const [timeLeft, setTimeLeft] = useState(expiryTime);
 
     useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft((prevTime) => {
-                if (prevTime > 0) {
-                    return prevTime - 1000;
-                } else {
-                    clearInterval(timer);
-                    onExpire(); // Trigger on expire
-                    return 0;
-                }
-            });
-        }, 1000);
+        if (expiryTime > 0) {
+            const timer = setInterval(() => {
+                setTimeLeft((prevTime) => {
+                    if (prevTime > 0) {
+                        return prevTime - 1000;
+                    } else {
+                        clearInterval(timer);
+                        onExpire(); // Trigger on expire
+                        return 0;
+                    }
+                });
+            }, 1000);
 
-        return () => clearInterval(timer);
-    }, [onExpire]);
+            return () => clearInterval(timer);
+        }
+    }, [expiryTime, onExpire]);
 
     const formatTime = (ms) => {
         const totalSeconds = Math.floor(ms / 1000);
@@ -47,13 +49,14 @@ const CountdownTimer = ({ expiryTime, onExpire }) => {
     );
 };
 
+
 function CustomerLogin() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [activeTab, setActiveTab] = useState('register');
     const [otpVisible, setOtpVisible] = useState(false);
-    const [otpEmail, setOtpEmail] = useState('');
+    const [otpEmail, setOtpx] = useState('');
     const [otpInput, setOtpInput] = useState(Array(6).fill(''));
-    const [otpExpiryTime, setOtpExpiryTime] = useState(5 * 60 * 1000); // 5 minutes
+    const [otpExpiryTime, setOtpExpiryTime] = useState(0.10 * 60 * 1000); // 5 minutes
     const [otpExpired, setOtpExpired] = useState(false);
 
     const [registerFormData, setRegisterFormData] = useState({
@@ -154,7 +157,7 @@ function CustomerLogin() {
                 const response = await axios.post(`${backend}/api/v1/user/request-forget-password`, { email: registerFormData.email });
                 setOtpVisible(true);
                 setOtpEmail(registerFormData.email);
-                setOtpExpiryTime(5 * 60 * 1000); // Reset timer
+                setOtpExpiryTime(0.10 * 60 * 1000); // Reset timer
                 setOtpExpired(false); // Reset expired status
                 toast.success(response.data.message);
             } catch (error) {
@@ -183,18 +186,29 @@ function CustomerLogin() {
     };
 
     //Resend OTP
-    const handleResendOTP = async () => {
-        if (!otpExpired) {
-            toast.error("OTP is still valid, please wait for it to expire.");
-            return;
-        }
+    // Handle Resend OTP
+const handleResendOTP = async (e) => {
+    e.preventDefault();
+    if (!otpExpired) {
+        toast.error("OTP is still valid, please wait for it to expire.");
+        return;
+    }
 
-        try {
-            await handelSendOTP();
-        } catch (error) {
-            toast.error(error.response?.data?.message || 'Error resending OTP');
-        }
-    };
+    try {
+        const response = await axios.post(`${backend}/api/v1/user/resend-otp`, { email: registerFormData.email });
+        
+        // Reset timer and hide expired messages
+        setOtpExpiryTime(0.10 * 60 * 1000);  // Reset timer to 1 minute
+        setOtpExpired(false);  // Hide expired messages
+        setOtpVisible(true);    // Show OTP input and timer again
+
+        toast.success(response.data.message);
+    } catch (error) {
+        toast.error(error.response?.data?.message || 'Error resending OTP');
+    }
+};
+
+    
 
     return (
         <>
@@ -317,7 +331,9 @@ function CustomerLogin() {
                                             <input id="input5" type="text" maxLength="1" onChange={(e) => handleInputChange(4, e)} />
                                             <input id="input6" type="text" maxLength="1" onChange={(e) => handleInputChange(5, e)} />
                                         </div>
+                                       {
                                         <CountdownTimer expiryTime={otpExpiryTime} onExpire={handleOtpExpire} />
+                                       } 
 
                                         <div>
                                             <button className="home-hero1_btn">Verify OTP</button>
@@ -337,5 +353,6 @@ function CustomerLogin() {
         </>
     );
 }
+
 
 export default CustomerLogin;
