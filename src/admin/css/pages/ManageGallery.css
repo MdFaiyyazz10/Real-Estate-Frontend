@@ -1,0 +1,108 @@
+.container2 {
+    border: 1px solid black;
+    height: auto; /* Changed from 100% to auto for better responsiveness */
+    width: 90%;
+    padding: 10px 20px;   
+    border-radius: 15px;
+    margin: 10px auto 0px auto;
+  }
+  
+  .manage-gallery-sec {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap for smaller screens */
+    margin-bottom: 15px;
+  }
+  
+  .col-2, .col-6, .col-4 {
+    flex: 1; /* Use flexbox for responsive layout */
+    min-width: 150px; /* Set a minimum width for columns */
+    margin: 5px; /* Add some spacing between columns */
+  }
+  
+  /* Dropdown */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 16px;
+    font-size: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: white;
+    min-width: 50px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .galler-manage-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 2px dotted #dddddd;
+    text-align: center;
+    padding: 8px;
+  }
+  
+  td {
+    height: 100px;
+    background-color: #eeeeee;
+  }
+  
+  .edit-button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+  }
+  
+  .delete-button {
+    padding: 5px 20px;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .manage-gallery-sec {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+  
+    .dropbtn {
+        width: 100%; /* Full width for button on smaller screens */
+    }
+  
+    .galler-manage-table {
+        font-size: 8px; /* Smaller font size for the table */
+    }
+  
+    td, th {
+        padding: 0px; /* Reduced padding for table cells */
+       
+    }
+    .manage-gallery-content{
+      overflow: auto;
+      white-space: nowrap;
+    }
+  }
+  

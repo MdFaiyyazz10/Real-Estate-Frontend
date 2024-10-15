@@ -27,7 +27,7 @@ function Agriculture() {
 
             <section id='commercial-plot-sec1'>
                 <div className='commercial-plot_img'>
-                    <img src="../../public/img/agricultureplot.png" alt="" />
+                    <img src="/img/agricultureplot.png" alt="" />
                 </div>
                 <div className='commercial-plot_content'>
                     <li>Agro Expert</li>

@@ -13,6 +13,10 @@ import Agriculture from '../services/Agriculture'
 import Adminlogin from '../admin/pages/Adminlogin'
 import CustomerLogin from '../customer/pages/CustomerLogin'
 import Blog1 from '../blog/Blog1'
+import ManageGallery from '../admin/pages/ManageGallery'
+import AddGallery from '../admin/pages/AddGallery'
+import Admin from '../admin/pages/Admin'
+import ResetPassword from '../customer/pages/ResetPassword'
 
 function Navigation() {
   return (
@@ -35,10 +39,14 @@ function Navigation() {
 
         {/* Admin Pages Routes */}
         <Route path='/user/login' element={<CustomerLogin/>}/>
+        <Route path='/user/reset-password' element={<ResetPassword/>}/>
 
 
         {/* Admin Pages Routes */}
         <Route path='/admin/login' element={<Adminlogin />} />
+        <Route path='/admin/dashboard' element={<Admin/>} />
+        <Route path='/admin/gallery' element={<ManageGallery />} />
+        <Route path='/admin/add-gallery' element={<AddGallery />} />
       </Routes>
     </>
   )

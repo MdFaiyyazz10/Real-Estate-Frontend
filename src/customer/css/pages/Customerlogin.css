@@ -1,7 +1,6 @@
 #customer-login {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     width: 90%;
@@ -13,8 +12,8 @@
 
 .customer-login_img {
     /* border: 1px solid red; */
-    width: 21.87rem;
-    height: 550px;
+    width: 22rem;
+    height: 35rem;
 }
 
 .customer-login_img>img {
@@ -28,11 +27,6 @@
     /* border: 1px solid red; */
     width: 37.5rem;
     height: 550px;
-}
-
-.customer-login_content>div>button:focus {
-    background-color: var(--primary-color);
-    color: white;
 }
 
 .customer-login_content>div:nth-child(1) {
@@ -50,6 +44,13 @@
     font-weight: bold;
     width: 180px;
     padding: 10px 0px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+.login-switch_btn.active {
+    background-color: var(--primary-color);
+    color: #fff !important;
 }
 
 
@@ -118,6 +119,37 @@
     outline: 1px solid var(--primary-color);
 }
 
+
+.customer-pass_cont {
+    position: relative;
+    width: 100%;
+}
+
+.customer-pass_cont>input {
+    border-radius: 2px;
+    padding: 4px 0px 4px 15px;
+    outline: none;
+    border: none;
+    width: 100%;
+    outline: 1px solid var(--primary-color);
+}
+
+.customer-pass_cont>input:focus {
+
+    outline: 2px solid rgba(0, 0, 255, 0.34);
+    border-radius: 2px;
+    border: none;
+}
+
+.customer-pass_cont>i {
+    position: absolute;
+    right: 10px;
+    /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
 .customer-rejister_login_forgotpass_btn>form>div>div>input:focus {
     outline: 2px solid rgba(0, 0, 255, 0.34);
     border-radius: 2px;
@@ -154,5 +186,61 @@
     }
 }
 
+#forgetpass_otp {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px 0px;
+}
 
-/* customer-login_btn-sec css start from here */
+#forgetpass_otp > button {
+    align-self: center; /* Center the Verify OTP button */
+    margin-top: 24px;
+}
+
+.forgetpass_otp-message {
+    color: black;
+    font-size: 14px;
+    margin-top: 4px;
+    text-align: center;
+}
+
+.forgetpass_otp-message > span {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.forgetpass_otp-inputs {
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Center the inputs */
+    margin-top: 10px;
+}
+
+.forgetpass_otp-inputs input {
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    border: none;
+    border-bottom: 1.5px solid #d2d2d2;
+    margin: 0 10px; /* Adjusted margin for better spacing */
+}
+
+.forgetpass_otp-inputs input:focus {
+    border-bottom: 1.5px solid royalblue;
+    outline: none;
+}
+
+@media (max-width: 413px) {
+    .forgetpass_otp-inputs input {
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        border: none;
+        border-bottom: 1.5px solid #d2d2d2;
+        margin: 0 5px;
+    }
+}
