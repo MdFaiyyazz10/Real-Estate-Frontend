@@ -55,12 +55,7 @@ function Adminnav() {
                 </li>
               </Link>
 
-              <Link to="/admin/property">
-                <li>
-                  {" "}
-                  <i className="fa-solid fa-house-user"></i> Create Property{" "}
-                </li>
-              </Link>
+             
 
               <Link to="/admin/allproperty">
                 <li>
@@ -86,7 +81,38 @@ function Adminnav() {
               >
                 <li>
                   {" "}
-                  <i class="fa-regular fa-image"></i> Gallery{" "}
+                  <i className="fa-regular fa-image"></i> Blog{" "}
+                </li>
+              </Link>
+
+              <ul
+                id="auth04"
+                className="sidebar-dropdown list-unstyled collapse dropditem-o1"
+                data-bs-parent="#sidebar"
+              >
+                <li className="sidebar-item">
+                  <Link to="add-blog" className="sidebar-link">
+                    Add Blog
+                  </Link>
+                </li>
+                <li className="sidebar-item">
+                  <Link to="blog" className="sidebar-link">
+                    Manage Blog
+                  </Link>
+                </li>
+              </ul>
+
+              <Link
+                to="/"
+                className="sidebar-link collapsed has-dropdown"
+                data-bs-toggle="collapse"
+                data-bs-target="#auth04"
+                aria-expanded="false"
+                aria-controls="auth04"
+              >
+                <li>
+                  {" "}
+                  <i className="fa-regular fa-image"></i> Gallery{" "}
                 </li>
               </Link>
 
@@ -107,6 +133,7 @@ function Adminnav() {
                 </li>
               </ul>
             </ul>
+            
             <ul>
               <Link to="#">
                 <li>

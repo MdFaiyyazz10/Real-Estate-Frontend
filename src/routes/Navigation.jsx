@@ -17,6 +17,8 @@ import ManageGallery from '../admin/pages/ManageGallery'
 import AddGallery from '../admin/pages/AddGallery'
 import Admin from '../admin/pages/Admin'
 import ResetPassword from '../customer/pages/ResetPassword'
+import ManageBlog from '../admin/pages/BlogManage'
+import AddBlog from '../admin/pages/AddBlog'
 
 function Navigation() {
   return (
@@ -33,7 +35,7 @@ function Navigation() {
         <Route path="/farmhouse-plot" element={<Farmhouse />} />
         <Route path="/agriculture-plot" element={<Agriculture />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/about-blog" element={<Blog1 />} />
+        <Route path="/blog/:slug" element={<Blog1 />} />
         <Route path="/contact" element={<ContactPage />} />
 
 
@@ -45,8 +47,10 @@ function Navigation() {
         {/* Admin Pages Routes */}
         <Route path='/admin/login' element={<Adminlogin />} />
         <Route path='/admin/dashboard' element={<Admin/>} />
-        <Route path='/admin/gallery' element={<ManageGallery />} />
-        <Route path='/admin/add-gallery' element={<AddGallery />} />
+        <Route path='/admin/dashboard/gallery' element={<ManageGallery />} />
+        <Route path='/admin/dashboard/blog' element={<ManageBlog />} />
+        <Route path='/admin/dashboard/add-gallery' element={<AddGallery />} />
+        <Route path='/admin/dashboard/add-blog' element={<AddBlog />} />
       </Routes>
     </>
   )

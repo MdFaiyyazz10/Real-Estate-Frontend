@@ -1,91 +1,107 @@
 import React, { useState } from 'react';
+import Nav from '../../home/components/Nav';
+import Contact from '../../home/components/Contact';
+import '../css/pages/ResetPassword.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { backend } from '../../App';
+import toast from 'react-hot-toast';
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
-import { backend } from '../../App'; // Adjust this path as needed
+import { useNavigate } from 'react-router-dom';
 
 function ResetPassword() {
-    const [email, setEmail] = useState('');
-    const [otp, setOtp] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [otpVisible, setOtpVisible] = useState(false);
-    const [step, setStep] = useState(1); // 1: Request OTP, 2: Verify OTP, 3: Reset Password
+    const [showPassword1, setShowPassword1] = useState(false);
+    const [showPassword2, setShowPassword2] = useState(false);
 
-    const requestOtp = async (e) => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
+
+    const userId = useSelector((state) => state.user.userId);
+    console.log(userId);
+
+    const [resetPasswordFormData, setResetPasswordFormData] = useState({
+        newPassword: '',
+        confirmPassword: ''
+    });
+
+    const resetPasswordChangeHandler = (e) => {
+        setResetPasswordFormData({
+            ...resetPasswordFormData,
+            [e.target.id]: e.target.value
+        });
+    };
+
+    // console.log(resetPasswordFormData)
+
+    const resetPasswordSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${backend}/api/v1/user/request-forget-password`, { email });
+            const response = await axios.post(`${backend}/api/v1/user/reset-password`, {
+                userId,
+                newPassword: resetPasswordFormData.newPassword,
+                confirmPassword: resetPasswordFormData.confirmPassword
+            });
+            // console.log(response)
+
+            // Show success toast
             toast.success(response.data.message);
-            setStep(2);
+
+            navigate('/user/login')
+
         } catch (error) {
-            toast.error(error.response?.data?.message || 'Error requesting OTP');
+            // Show error toast
+            toast.error(error.response?.data?.message || "An error occurred");
+            console.log(error);
         }
     };
 
-    const verifyOtp = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(`${backend}/api/v1/user/verify-reset-otp`, { email, otp });
-            toast.success(response.data.message);
-            setStep(3);
-        } catch (error) {
-            toast.error(error.response?.data?.message || 'Invalid OTP');
-        }
+    const togglePassword1 = () => {
+        setShowPassword1(!showPassword1);
     };
 
-    const resetPassword = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(`${backend}/api/v1/user/reset-password`, { email, newPassword });
-            toast.success(response.data.message);
-            // Redirect to login or another page after successful reset
-        } catch (error) {
-            toast.error(error.response?.data?.message || 'Error resetting password');
-        }
+    const togglePassword2 = () => {
+        setShowPassword2(!showPassword2);
     };
 
     return (
-        <div className="reset-password">
-            <h2>Reset Password</h2>
-            {step === 1 && (
-                <form onSubmit={requestOtp}>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    <button type="submit">Send OTP</button>
-                </form>
-            )}
+        <>
+            {/* <Nav /> */}
 
-            {step === 2 && (
-                <form onSubmit={verifyOtp}>
-                    <label>Enter OTP:</label>
-                    <input
-                        type="text"
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                        required
-                    />
-                    <button type="submit">Verify OTP</button>
+            <section id="reset-pass_sec">
+                <form onSubmit={resetPasswordSubmitHandler}>
+                    <h3>Reset Your Password</h3>
+                    <div className="reset-pass_input_cont">
+                        <label htmlFor="newPassword">Enter Password:</label>
+                        <input
+                            type={showPassword1 ? 'text' : 'password'}
+                            id='newPassword'
+                            required
+                            onChange={resetPasswordChangeHandler}
+                        />
+                        <span onClick={togglePassword1} className="reset-pass_toggle">
+                            <i className={`fa-solid ${showPassword1 ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                        </span>
+                    </div>
+                    <div className="reset-pass_input_cont">
+                        <label htmlFor="confirmPassword">Confirm Password:</label>
+                        <input
+                            type={showPassword2 ? 'text' : 'password'}
+                            id='confirmPassword'
+                            required
+                            onChange={resetPasswordChangeHandler}
+                        />
+                        <span onClick={togglePassword2} className="reset-pass_toggle">
+                            <i className={`fa-solid ${showPassword2 ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                        </span>
+                    </div>
+                    <button id="reset-pass_sec-btn">
+                        <span className="hover-underline-animation"> Reset Now </span>
+                        <i className="fa-solid fa-arrow-right"></i>
+                    </button>
                 </form>
-            )}
+            </section>
 
-            {step === 3 && (
-                <form onSubmit={resetPassword}>
-                    <label>New Password:</label>
-                    <input
-                        type={otpVisible ? "text" : "password"}
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                        required
-                    />
-                    <i className={`far ${otpVisible ? 'fa-eye-slash' : 'fa-eye'}`} onClick={() => setOtpVisible(!otpVisible)}></i>
-                    <button type="submit">Reset Password</button>
-                </form>
-            )}
-        </div>
+            {/* <Contact /> */}
+        </>
     );
 }
 

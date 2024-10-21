@@ -4,11 +4,14 @@ import { signInFailed, signInStart, signInSuccess } from '../../redux/user/userS
 import { useDispatch } from 'react-redux';
 import toast from 'react-hot-toast'
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 
 function Adminlogin() {
 
     const [formData , setFormData] = useState({})
+
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
 
@@ -34,9 +37,10 @@ function Adminlogin() {
             // console.log(response)
             toast.success(response.data.message);
             dispatch(signInSuccess({
-                ...response.data.user, // Spread user data from response
-                token: response.data.token, // Assuming this is returned from your API
+                ...response.data.user, 
+                token: response.data.token, 
             }));
+            navigate('/admin/dashboard')
         } catch (error) {
             console.log(error)
             toast.error(error.response?.data?.message || "An error occurred");

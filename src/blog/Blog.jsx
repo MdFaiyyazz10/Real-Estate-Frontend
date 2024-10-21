@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/Blog.css';
 import Nav from '../home/components/Nav';
 import Contact from '../home/components/Contact';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { backend } from '../App';
 
 // Array of blog items
 const blogItems = [
@@ -24,6 +26,25 @@ const blogItems = [
 ];
 
 function Blog() {
+
+
+     // Latest Blogs
+     const [blog, setBlog] = useState([]);
+
+     const fetchBlogs = async () => {
+         try {
+             const response = await axios.get(`${backend}/api/v1/blog/get-latest-blog`);
+             console.log(response);
+             setBlog(response.data.blogs); 
+         } catch (error) {
+             console.error( error);
+         }
+     };
+ 
+     useEffect(() => {
+         fetchBlogs();
+     }, []);
+
     return (
         <>
             <Nav />
@@ -48,7 +69,7 @@ function Blog() {
             </section>
 
             {/* Blog Section 1 */}
-            <section id='blog-sec1'>
+            {/* <section id='blog-sec1'>
                 {blogItems.map((item, index) => (
                     <div className="blog_item" key={index}>
                         <img className='img-fluid' src={item.imgSrc} alt={item.title} />
@@ -65,7 +86,31 @@ function Blog() {
                         </div>
                     </div>
                 ))}
+            </section> */}
+
+
+            <section id='blog-sec1'>
+                {blog.map((item, index) => (
+                    <div className="blog_item" key={index}>
+                        <img className='img-fluid' src={item.image} alt={item.title} />
+                        <div>
+                            {/* <i id='date' className="fa-solid fa-calendar-days">{{new Date(item.date).toLocaleDateString()}}</i> */}
+                            <i id='date' className="fa-solid fa-calendar-days">{new Date(item.date).toLocaleDateString()}</i>
+
+                            <p>{item.title}</p>
+                            <br />
+                            <button className="blog_item-btn">
+                                Read More
+                                <div className="icon">
+                                    <Link to={`/blog/${item.slug}`} > <i className="fa-solid fa-arrow-right"></i> </Link>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                ))}
             </section>
+
+
 
             <Contact />
         </>
