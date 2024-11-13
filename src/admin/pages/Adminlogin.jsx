@@ -22,31 +22,44 @@ function Adminlogin() {
         });
     };
 
+
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
-
+      
         dispatch(signInStart());
-
+      
         try {
-            const response = await axios.post('http://localhost:4000/api/v1/admin/signin', formData, {
-                withCredentials: true,
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-            // console.log(response)
-            toast.success(response.data.message);
-            dispatch(signInSuccess({
-                ...response.data.user, 
-                token: response.data.token, 
-            }));
-            navigate('/admin/dashboard')
+          const response = await axios.post('http://localhost:4000/api/v1/admin/signin', formData, {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+      
+         
+          console.log( response.data);
+      
+         
+          toast.success(response.data.message);
+      
+         
+         
+      
+        dispatch(signInSuccess({
+          ...response.data.admin, 
+          token: response.data.token,
+      }));
+          
+          navigate('/admin/dashboard');
         } catch (error) {
-            console.log(error)
-            toast.error(error.response?.data?.message || "An error occurred");
-            dispatch(signInFailed(error));
+          
+          console.log(error)
+          
+          toast.error(error.response?.data?.message || "An error occurred");
+          dispatch(signInFailed(error));
         }
-    };
+      };
+      
 
     return (
         <>

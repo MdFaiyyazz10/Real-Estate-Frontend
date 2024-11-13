@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../gallery/Gallery.css';
 import Nav from '../home/components/Nav';
 import { Link } from 'react-router-dom';
 import Contact from '../home/components/Contact';
-
-const images = [
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery1.png', name: 'Date Palm Field at Sunset' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery2.png', name: 'Date Palm Land Cultivation' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery3.png', name: 'Desert Date Farm' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery4.png', name: 'Date Palm Seedlings' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery5.png', name: 'Dry Land Date Farming' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery6.png', name: 'Harvested Land' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery7.png', name: 'Date Palm Grove' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery8.png', name: 'Date Palm Tree Close-Up' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery9.png', name: 'Date Harvesting' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery10.png', name: 'Date Palm Field at Sunset' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery11.png', name: 'Irrigated Date Plantation' },
-    { src: 'https://demo.vflyorions.in/builder/assets/img/gallery12.png', name: 'Date Palm Rows' },
-];
+import axios from 'axios';
+import { backend } from '../App';
 
 function Gallery() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [getGallery, setGallery] = useState([]);
+
+    const fetchGallery = async () => {
+        try {
+            const res = await axios.get(`${backend}/api/v1/gallery/all-gallery`);
+            setGallery(res.data.galleryItems);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchGallery();
+    }, []);
 
     const openModal = (index) => {
-        setSelectedImage(images[index]);
+        setSelectedImage(getGallery[index]); // Change here
         setCurrentIndex(index);
     };
 
@@ -33,14 +34,14 @@ function Gallery() {
     };
 
     const handleNext = () => {
-        const nextIndex = (currentIndex + 1) % images.length;
-        setSelectedImage(images[nextIndex]);
+        const nextIndex = (currentIndex + 1) % getGallery.length; // Change here
+        setSelectedImage(getGallery[nextIndex]); // Change here
         setCurrentIndex(nextIndex);
     };
 
     const handlePrev = () => {
-        const prevIndex = (currentIndex - 1 + images.length) % images.length;
-        setSelectedImage(images[prevIndex]);
+        const prevIndex = (currentIndex - 1 + getGallery.length) % getGallery.length; // Change here
+        setSelectedImage(getGallery[prevIndex]); // Change here
         setCurrentIndex(prevIndex);
     };
 
@@ -63,49 +64,46 @@ function Gallery() {
                 </div>
             </section>
 
-            {/* Hero gallery section */}
             <section id='hero_gallery1'>
-                {images.map((img, index) => (
+                {getGallery.map((img, index) => (
                     <div
                         key={index}
                         className="gallery_card"
                         onClick={() => openModal(index)}
                         style={{
-                            backgroundImage: `url(${img.src})`,
+                            backgroundImage: `url(${img.image})`,
                         }}
                     >
                         <div className="gallery_card-footer">
-                            <p>{img.name}</p>
+                            <p>{img.title}</p>
                         </div>
                     </div>
                 ))}
             </section>
 
-            {/* Modal for viewing full image */}
             {selectedImage && (
                 <div className="gallery-img_full">
                     <span className="gallery-img_full-close-btn" onClick={closeModal}>&times;</span>
                     <button className="gallery-img_full-prev-btn" onClick={handlePrev}>
-                        <i class="fa-solid fa-chevron-left"></i>
+                        <i className="fa-solid fa-chevron-left"></i>
                     </button>
-                    <img className="gallery-img_content" src={selectedImage.src} alt={selectedImage.name} />
+                    <img className="gallery-img_content" src={selectedImage.image} alt={selectedImage.title} />
                     <button className="gallery-img_full-next-btn" onClick={handleNext}>
-                        <i class="fa-solid fa-chevron-right"></i>
+                        <i className="fa-solid fa-chevron-right"></i>
                     </button>
                     <div className="gallery-img_footer">
-                        <h3>{selectedImage.name}</h3>
+                        <h3>{selectedImage.title}</h3>
                     </div>
                 </div>
             )}
 
-            {/* Hero gallery section 2 */}
             <section id='hero_gallery2'>
                 <div>
                     <span>Connect Now</span>
                     <h3>Join Our Network and Never Miss Out</h3>
                 </div>
                 <div>
-                    <span><i className="fa-regular fa-paper-plane"></i> <Link to="/contact">Connect Now</Link> </span>
+                    <span><i className="fa-regular fa-paper-plane"></i> <Link to="/contact">Connect Now</Link></span>
                 </div>
             </section>
 

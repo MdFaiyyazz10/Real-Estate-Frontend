@@ -1,12 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
 const initialState = {
-    currentUser: null,
+    currentUser: null, // current user for the last logged in
+    admin: null,
+    agent: null,
+    partner: null,
     token: null,
-    userId: null,
-    error: false,
     loading: false,
+    error: false,
+    userId: null,
+    role: null,
 };
+
+
 
 const userSlice = createSlice({
     name: 'user',
@@ -16,24 +23,37 @@ const userSlice = createSlice({
             state.loading = true;
         },
         signInSuccess: (state, action) => {
-            state.currentUser = action.payload;
-            state.token = action.payload.token;
-            state.userId = action.payload.userId; // User ID ko set karein
+            const { role, ...userData } = action.payload;
+            state.role = role;
+            if (role === "admin") {
+                state.admin = userData;
+            } else if (role === "agent") {
+                state.agent = userData;
+            } else if (role === "partner") {
+                state.partner = userData;
+            }
             state.loading = false;
             state.error = false;
         },
+        saveUserId: (state, action) => {
+            state.userId = action.payload; // Saving userId in state
+        },
+        
         signInFailed: (state, action) => {
             state.loading = false;
             state.error = action.payload;
         },
-
-          // New reducer for updating user ID
-        setUserId: (state, action) => {
-            state.userId = action.payload; // User ID ko set karein
+        propertyCreatedStart: (state) => {
+            state.loading = true;
         },
-
-
-
+        propertyCreatedSuccess: (state, action) => {
+            state.loading = false;
+            state.error = false;
+        },
+        propertyCreatedFailed: (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        },
         updateUserStart: (state) => {
             state.loading = true;
         },
@@ -72,9 +92,10 @@ export const {
     signInStart,
     signInSuccess,
     signInFailed,
-    setUserId,
-
-
+    saveUserId,
+    propertyCreatedStart,
+    propertyCreatedSuccess,
+    propertyCreatedFailed,
     updateUserStart,
     updateUserSuccess,
     updateUserFailed,

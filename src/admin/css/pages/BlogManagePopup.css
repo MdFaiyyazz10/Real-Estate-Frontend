@@ -112,7 +112,7 @@
   }
 @media (max-width: 768px) {
    .blog-manage-pop{
-    height: auto;
+    height:28rem;
    }
     hr{
      display: none;
@@ -140,7 +140,7 @@
     .add-manage-blog-popup-sec-button {
         width: 100%;
         margin-left: 0;
-        margin-top: 12  px;
+        margin-top: 1px;
     }
     .add-manage-blog-popup-inpu-name-des{
         width: 100%;
@@ -308,3 +308,19 @@
         width: 70%;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

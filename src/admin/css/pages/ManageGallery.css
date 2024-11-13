@@ -17,12 +17,16 @@
 .heading-2,
 .heading-3 {
   flex: 1;
-  /* Use flexbox for responsive layout */
   min-width: 150px;
-  /* Set a minimum width for columns */
   margin: 5px;
-  /* Add some spacing between columns */
 }
+.gallery-manage-search-bar{
+  width: 25%;
+ }
+  .gallery-manage-search-bar-input{
+    width: 75%;
+    outline-offset: unset !important;
+  }
 .galler-manage-table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -39,8 +43,6 @@
   text-align: center;
   padding: 8px;
 }
-
-
 /* Media Queries */
 @media (max-width: 768px) {
   .manage-gallery-sec {
@@ -50,21 +52,14 @@
 
   .dropbtn {
     width: 100%;
-    /* Full width for button on smaller screens */
   }
-
   .galler-manage-table {
     font-size: 8px;
-    /* Smaller font size for the table */
   }
-
   td,
   th {
     padding: 0px;
-    /* Reduced padding for table cells */
-
   }
-
   .manage-gallery-content {
     overflow: auto;
     white-space: nowrap;
@@ -74,23 +69,18 @@
   .manage-gall_pagination {
       text-align: center; /* Center align text */
   }
-
   .pagination {
       flex-wrap: wrap; /* Allow wrapping of pagination items */
       justify-content: center; /* Center the pagination */
   }
-
   .page-item {
       margin: 0 5px; /* Add some space between items */
   }
-
   .page-link {
       padding: 5px 10px; /* Adjust padding for smaller buttons */
       font-size: 14px; /* Make font size smaller */
   }
 }
-
-
 
 .manage-gall_pagination{
   padding-top: 20px;
@@ -118,3 +108,4 @@
   width: 400px; /* Adjust as needed */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+ 

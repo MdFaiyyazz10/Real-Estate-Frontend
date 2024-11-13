@@ -37,7 +37,7 @@ function Nav() {
                         <li className="nav-item"><NavLink className="nav-link nav_main" to={"/blog"}>Blog</NavLink></li>
                         <li className="nav-item"><NavLink className="nav-link nav_main" to={"/contact"}>Contact</NavLink></li>
                     </ul>
-                    <Link className="nav-link" to={"/user/login"}>
+                    <Link className="nav-link" to={"/login"}>
                         <button className="customerlogin-btn"> Login </button>
                     </Link>
                 </div>

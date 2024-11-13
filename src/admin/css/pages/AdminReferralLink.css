@@ -1,0 +1,82 @@
+.referal-link-container2 {
+    background-color: #fff;
+    height: auto;
+    box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07)!important;
+    width: 90%;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin: 40px auto 0px auto;
+  }
+  .referal-link-sec {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+  .heading-1,
+  .heading-2,
+  .heading-3 {
+    flex: 1;
+    min-width: 150px;
+    margin: 5px;
+  }
+  .referal-link-seach{outline: none;}
+  .referal-link-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .referal-link-table>tbody>tr>td {
+    border: 2px dotted #dddddd;
+    text-align: center;
+    height: 100px;
+    /* background-color: #eeeeee; */
+  }
+  .referal-link-table>thead>tr>th {
+    border: 2px dotted #dddddd;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 8px;
+  }
+  tr:nth-child(odd) {
+    background-color: #eeeeee;
+  }
+  
+  .referal-link-pagination{
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .referal-link-sec {
+      flex-direction: column;
+    }
+    .referal-link-table {
+      font-size: 8px;
+    }
+  
+    td,
+    th {
+      padding: 0px;
+    }
+  
+    .referal-link-content {
+      overflow: auto;
+      white-space: nowrap;
+    }
+  }
+  @media (max-width: 320px) {
+    .referal-link-pagination {
+        text-align: center; /* Center align text */
+    }
+  
+    .pagination{
+        flex-wrap: wrap; /* Allow wrapping of pagination items */
+        justify-content: center; /* Center the pagination */
+    }
+  }
+  
+
+  .admin-referral-link{
+    color: blue;
+  }

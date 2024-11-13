@@ -3,6 +3,7 @@ import axios from 'axios';
 import "../css/pages/AddGallery.css";
 import toast from 'react-hot-toast';
 import { backend } from '../../App';
+import Adminnav from '../component/AdminNav';
 
 const AddGallery = () => {
     const [galleryFormData, setGalleryFormData] = useState({ title: '', image: null });
@@ -44,6 +45,9 @@ const AddGallery = () => {
     };
 
     return (
+        <>
+        <Adminnav />
+       
         <div className='add-gallery-container1'>
             <h4 className='m-3'>Add Gallery Image</h4>
             <hr />
@@ -74,6 +78,7 @@ const AddGallery = () => {
                     </div>
             </form>
         </div>
+        </>
     );
 };
 

@@ -38,29 +38,18 @@ div.admin-nav>div:nth-child(3)>* {
     margin-left: 1rem;
 }
 
-a.brand {
+a.nav-name {
     text-decoration: none;
     cursor: default;
-    color: #000000;
+    background-color: #fff;
+    color: #000000 !important;
     padding-left: 10px;
     box-sizing: border-box;
     font: 500 1rem sans-serif;
 }
-a.brand>img {
+a.nav-name>img {
     height: 45px;
     width: 60px;
-}
-
-div.textfield-searchbox {
-    background-color: #ffffff;
-    border: 2px solid #2196f3;
-    box-shadow: inset 0 1px 3px hsl(0, 0%, 85%);
-    border-radius: 5px;
-    align-items: center;
-    display: inline-flex;
-    width: 100%;
-    padding: 3px 10px 3px 8px;
-    box-sizing: border-box;
 }
 
 div.textfield-searchbox>input[type="text"].textfield-searchbox-input {
@@ -132,11 +121,6 @@ div.textfield-searchbox>input[type="text"].textfield-searchbox-input:focus~div.t
 div.textfield-searchbox-glass>i {
     color: #eff0f0;
 }
-/* 
-#searchpanel{
-    border: 1px solid red;
-    height: 100%;
-} */
 
 div[role="button"].btn {
     background-color: #ffffff;
@@ -179,6 +163,7 @@ div[role="button"][class*="login-style-red"]:hover {
 }
 
 div.toggler {
+    color: black !important;
     border-radius: 50%;
     cursor: pointer;
     display: inline-flex;
@@ -253,17 +238,9 @@ div.search-panel>div.admin-nav_list>ul a {
 
 div.search-panel>div.admin-nav_list>ul a:active,
 div.search-panel>div.admin-nav_list>ul a:hover {
-    background-color: #eeeeee;
+    background-color: var(--primary-color);
+    color: white;
 }
-
-/* div.search-panel>div.admin-nav_list>ul a.current {
-    background-color: #eeeeee;
-} */
-
-/* div.search-panel>div.admin-nav_list>ul a.current:active,
-div.search-panel>div.admin-nav_list>ul a.current:hover {
-    background-color: #bcbcbc;
-} */
 
 div.search-panel>div.admin-nav_list>ul a li {
     align-items: center;
@@ -287,7 +264,6 @@ div.search-panel>div.admin-nav_footer {
 }
 
 div.search-panel>div.admin-nav_footer>div[role="button"].btn {
-    display: none;
     margin-right: calc(100% - 44px - 65.12px);
 }
 
@@ -310,18 +286,8 @@ div.bg-gradient {
     z-index: 6000;
 }
 
-@media (max-width: 600px) {
-    div.admin-nav>.r>div[role="button"].btn {
-        display: none;
-    }
-
-    div.search-panel>div.admin-nav_footer>div[role="button"].btn {
-        display: block;
-    }
-}
-
 @media (max-width: 726px) {
-    a.brand>span{
+    a.nav-name>span{
         display: none;
     }
     div.search-panel.active~div.bg-gradient {
@@ -329,8 +295,10 @@ div.bg-gradient {
     }
 }
 
-
-
-
-
-
+/*                 */
+/* for active link */
+/*                 */
+.activeLink {
+    color: white !important;
+    background-color: var(--primary-color) !important;
+}

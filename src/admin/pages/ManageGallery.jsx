@@ -4,14 +4,18 @@ import "../css/pages/ManageGalleryPopupPage.css";
 import axios from 'axios';
 import { backend } from '../../App';
 import toast from 'react-hot-toast';
+import Adminnav from '../component/AdminNav';
 
 const ManageGallery = () => {
     const [showModal, setShowModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
     const [deletedId, setDeleteId] = useState(null);
-    const [editingItem, setEditingItem] = useState({ title: '', image: null }); 
+    const [editingItem, setEditingItem] = useState({ title: '', image: null });
     const [allGalleries, setAllGalleries] = useState([]);
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [entriesPerPage, setEntriesPerPage] = useState(5);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const fetchGallery = async () => {
         try {
@@ -27,19 +31,19 @@ const ManageGallery = () => {
     }, []);
 
     const deleteHandler = async () => {
-        setLoading(true); 
+        setLoading(true);
         try {
             const res = await axios.delete(`${backend}/api/v1/gallery/delete/${deletedId}`, {
                 withCredentials: true
             });
-            fetchGallery(); 
-            setDeleteModal(false); 
+            fetchGallery();
+            setDeleteModal(false);
             toast.success(res.data.message);
         } catch (error) {
             toast.error(error.response?.data.message || 'An error occurred');
             console.log(error);
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
     };
 
@@ -51,46 +55,70 @@ const ManageGallery = () => {
             formData.append('image', editingItem.image);
         }
 
-        setLoading(true); 
+        setLoading(true);
         try {
             const res = await axios.put(`${backend}/api/v1/gallery/update/${editingItem._id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                }, 
+                },
                 withCredentials: true
             });
-            fetchGallery(); // Refresh gallery after update
-            setShowModal(false); 
+            fetchGallery();
+            setShowModal(false);
             toast.success(res.data.message);
-            setEditingItem({ title: '', image: null }); 
+            setEditingItem({ title: '', image: null });
         } catch (error) {
             toast.error(error.response?.data.message || 'An error occurred');
             console.log(error);
         } finally {
-            setLoading(false); 
+            setLoading(false);
         }
+    };
+
+    // Filtered gallery based on search query
+    const filteredGallery = allGalleries.filter(gallery => 
+        gallery.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    // Pagination calculations
+    const totalEntries = filteredGallery.length;
+    const totalPages = Math.ceil(totalEntries / entriesPerPage);
+    const indexOfLastEntry = currentPage * entriesPerPage;
+    const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
+    const currentEntries = filteredGallery.slice(indexOfFirstEntry, indexOfLastEntry);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const handleEntriesPerPageChange = (e) => {
+        setEntriesPerPage(Number(e.target.value));
+        setCurrentPage(1); // Reset to first page
     };
 
     return (
         <>
+        <Adminnav />
             <div className='manage-gallery-container2' style={{ opacity: showModal ? 0.5 : 1 }}>
                 <h4 className='m-3'>Manage Gallery</h4>
                 <hr />
                 <div className='manage-gallery-sec'>
                     <div className='heading-1 col-2'>
-                        <label htmlFor="show">Show:-</label>
-                        <select name="" id="">
+                        <label style={{display:"inline"}} htmlFor="show">Show:-</label>
+                        <select onChange={handleEntriesPerPageChange}>
+                            <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="50">50</option>
                             <option value="100">100</option>
                         </select>
                     </div>
                     <div className='heading-2 col-6'>
-                        <span>entries</span>
+                        <span>Entries:-</span>
                     </div>
                     <div className='heading-3 col-4'>
-                        <label htmlFor="search">Search :-</label>
-                        <input type="search" />
+                        <label className="gallery-manage-search-bar" htmlFor="search">Search :-</label>
+                        <input className="gallery-manage-search-bar-input" type="search" value={searchQuery} 
+                            onChange={(e) => setSearchQuery(e.target.value)} />
                     </div>
                 </div>
 
@@ -105,12 +133,12 @@ const ManageGallery = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {allGalleries.map((gallery, index) => (
+                            {currentEntries.map((gallery, index) => (
                                 <tr key={gallery._id}>
-                                    <td>{index + 1}</td>
+                                    <td>{index + 1 + indexOfFirstEntry}</td>
                                     <td>{gallery.title}</td>
                                     <td>
-                                        <img style={{ height: "100%" }} src={gallery.image} alt={gallery.title} />
+                                        <img style={{ height: "5rem", width: "10rem" }} src={gallery.image} alt={gallery.title} />
                                     </td>
                                     <td>
                                         <button
@@ -118,7 +146,7 @@ const ManageGallery = () => {
                                             type="button"
                                             className="btn btn-success m-3 Edit"
                                             onClick={() => {
-                                                setEditingItem({ ...gallery, image: null }); 
+                                                setEditingItem({ ...gallery, image: null });
                                                 setShowModal(true);
                                             }}>
                                             Edit
@@ -138,18 +166,20 @@ const ManageGallery = () => {
                         </tbody>
                     </table>
                 </div>
-                <div className='manage-gall_pagination'>
-                    <p>Showing 1 to 1 of 1 entries</p>
+                <div className='blog-manage-pagination'>
+                    <p>Showing {indexOfFirstEntry + 1} to {Math.min(indexOfLastEntry, totalEntries)} of {totalEntries} entries</p>
                     <nav aria-label="Page navigation example manage-gallery-page">
                         <ul className="pagination justify-content-right">
-                            <li className="page-item disabled">
-                                <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
+                            <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                                <a className="page-link" onClick={() => handlePageChange(currentPage - 1)} href="#">Previous</a>
                             </li>
-                            <li className="page-item"><a className="page-link" href="#">1</a></li>
-                            <li className="page-item"><a className="page-link" href="#">2</a></li>
-                            <li className="page-item"><a className="page-link" href="#">3</a></li>
-                            <li className="page-item">
-                                <a className="page-link" href="#">Next</a>
+                            {[...Array(totalPages)].map((_, i) => (
+                                <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                                    <a className="page-link" onClick={() => handlePageChange(i + 1)} href="#">{i + 1}</a>
+                                </li>
+                            ))}
+                            <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                                <a className="page-link" onClick={() => handlePageChange(currentPage + 1)} href="#">Next</a>
                             </li>
                         </ul>
                     </nav>
@@ -164,7 +194,7 @@ const ManageGallery = () => {
                     loading={loading} 
                 />
             }
-            {deleteModal && <MyDelete setDeleteModal={setDeleteModal} deleteHandler={deleteHandler} loading={loading} />} {}
+            {deleteModal && <MyDelete setDeleteModal={setDeleteModal} deleteHandler={deleteHandler} loading={loading} />}
         </>
     );
 };

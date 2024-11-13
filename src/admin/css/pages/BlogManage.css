@@ -19,6 +19,13 @@
   min-width: 150px;
   margin: 5px;
 }
+.blog-manage-search-bar{
+  width: 25%;
+ }
+  .blog-manage-search-bar-input{
+    width: 75%;
+    outline-offset: unset !important;
+  }
 .blog-manage-table {
   font-family: arial, sans-serif;
   border-collapse: collapse;

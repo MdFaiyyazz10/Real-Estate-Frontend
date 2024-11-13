@@ -33,7 +33,7 @@ function Blog() {
 
      const fetchBlogs = async () => {
          try {
-             const response = await axios.get(`${backend}/api/v1/blog/get-latest-blog`);
+             const response = await axios.get(`${backend}/api/v1/blog/get-all-blog`);
              console.log(response);
              setBlog(response.data.blogs); 
          } catch (error) {

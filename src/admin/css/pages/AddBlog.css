@@ -73,7 +73,7 @@
     color: white;
     font-weight: bolder;
     background-color: rgb(13, 13, 46);
-    margin: 15px 0px 0px 35px;
+    margin: 5px 0px 0px 35px;
 }
 
 @media (max-width: 768px) {

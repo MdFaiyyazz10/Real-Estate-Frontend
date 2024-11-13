@@ -35,7 +35,7 @@ function ResetPassword() {
     const resetPasswordSubmitHandler = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${backend}/api/v1/user/reset-password`, {
+            const response = await axios.post(`${backend}/api/v1/password/reset-password`, {
                 userId,
                 newPassword: resetPasswordFormData.newPassword,
                 confirmPassword: resetPasswordFormData.confirmPassword

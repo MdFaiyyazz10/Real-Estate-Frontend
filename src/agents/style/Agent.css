@@ -1,0 +1,12 @@
+.agent {
+    display: flex;
+    min-height: 100vh;
+    background: #f8f9fa;
+  }
+  
+  .main-content {
+    flex: 1;
+    margin-left: 280px;
+    display: flex;
+    flex-direction: column;
+  }
