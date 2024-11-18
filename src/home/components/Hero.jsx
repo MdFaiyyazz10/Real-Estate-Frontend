@@ -89,6 +89,7 @@ function Hero() {
                     </div>
                 </div> */}
               <section id='blog-sec1'>
+                {/* <h1>Our Latest Blog</h1> */}
                 {blog.map((item, index) => (
                     <div className="blog_item" key={index}>
                         <img className='img-fluid' src={item.image} alt={item.title} />

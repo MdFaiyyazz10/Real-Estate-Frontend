@@ -58,7 +58,20 @@ const userSlice = createSlice({
             state.loading = true;
         },
         updateUserSuccess: (state, action) => {
-            state.currentUser = action.payload;
+            const { role, ...updatedData } = action.payload;
+
+            // Update the current user
+            state.currentUser = updatedData;
+
+            // Depending on the role, update the corresponding state slice
+            if (role === 'agent') {
+                state.agent = updatedData; // update agent data
+            } else if (role === 'admin') {
+                state.admin = updatedData; // update admin data
+            } else if (role === 'partner') {
+                state.partner = updatedData; // update partner data
+            }
+
             state.loading = false;
             state.error = false;
         },
